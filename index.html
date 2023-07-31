@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("score").onclick = function () {
+                given = document.getElementById("given").value
+                correct = document.getElementById("correct").value
+
+                total = 0
+                score = 0
+                for (i = 0; i < given.length; i++) {
+                    for (j = i + 1; j < given.length; j++) {
+                        total++
+                        a = given.charAt(i)
+                        b = given.charAt(j)
+
+                        index = correct.indexOf(a)
+                        if (correct.substring(index).includes(b)) {
+                            score++
+                        }
+                    }
+                }
+
+                document.getElementById("output").value = score + "/" + total
+            }
+        }
+    </script>
+
+    <style>
+        .dropdown-content li>a,
+        .dropdown-content li>span {
+            color: #333 !important;
+        }
+
+        .select-dropdown li.disabled,
+        .select-dropdown li.disabled>span,
+        .select-dropdown li.optgroup {
+            color: rgba(0, 0, 0, 0.3) !important;
+        }
+
+        form {
+            margin-top: 50px;
+            max-width: 500px;
+            width: 100%;
+            left: 50% !important;
+            margin-left: -250px !important;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="given" type="text" class="validate">
+                    <label for="given">Given Answer</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="correct" type="text" class="validate">
+                    <label for="correct">Correct Answer</label>
+                </div>
+            </div>
+            <div class="row col">
+                <button id="score" type="button" class="waves-effect waves-light btn">Calculate Score</button>
+            </div>
+            <div class="row">
+                <div class="output-field col s12">
+                    <input id="output" type="text" class="validate" readonly>
+                    <label for="output">Score</label>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
